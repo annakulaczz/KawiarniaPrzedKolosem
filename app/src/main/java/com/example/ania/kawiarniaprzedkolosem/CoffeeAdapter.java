@@ -6,12 +6,14 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Ania on 2018-01-16.
@@ -36,7 +38,7 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.setName(Coffees.get(position).getName());
-    //    holder.setPrice(Coffees.get(position).getPrice());
+        holder.setPrice(Coffees.get(position).getPrice());
 
     }
 
@@ -50,17 +52,34 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.ViewHolder
         @BindView(R.id.name_tv)
         TextView name_tv;
 
-        // @BindView(R.id.price_tv)
-        // TextView price_tv;
+         @BindView(R.id.price_tv)
+         TextView price_tv;
+
+         @BindView(R.id.image)
+        ImageView image;
+
+         @OnClick(R.id.check_btn)
+         void OnClick ()
+         {
+             if(image.getVisibility() == View.VISIBLE)
+             {
+                 image.setVisibility(View.INVISIBLE);
+             }
+             else
+             {
+                 image.setVisibility(View.VISIBLE);
+             }
+         }
 
 
 
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
+            image.setVisibility(View.INVISIBLE);
         }
 
        private void setName(String name) {name_tv.setText(name);}
-      // private void setPrice(String price) { price_tv.setText(price); }
+       private void setPrice(String price) { price_tv.setText(price); }
     }
 }
